@@ -1,0 +1,10 @@
+ const  ServerApiVersion = require('mongodb');
+
+
+mongoose.connect("mongodb+srv://amanyddv:i8grtdM2EylclHQ9@cluster0.3bawqzz.mongodb.net/test",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+    .then( () => {
+        console.log('Connected to the database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. n${err}`);
+    })
