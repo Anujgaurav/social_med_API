@@ -1,5 +1,6 @@
 var ex=require("express");
 var app=ex()
+const port = process.env.PORT || 7000;
 const bodyParser =require("body-parser")
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -163,5 +164,5 @@ app.post("/changepic",function(req,res){
         
     })
 })
-app.listen(7000,function(){
+app.listen(port,function(){
     console.log("server is running");});
