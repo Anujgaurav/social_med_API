@@ -33,10 +33,10 @@ app.use('/profilePic',ex.static('profilePic'))
 //     }
 // );
 
-// const  ServerApiVersion = require('mongodb');
+const  ServerApiVersion = require('mongodb');
 
 
-mongoose.connect("mongodb+srv://amanyddv:<password>@cluster0.3bawqzz.mongodb.net/",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+mongoose.connect("mongodb+srv://amanyddv:<password>@cluster0.3bawqzz.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
     .then( () => {
         console.log('Connected to the database ')
     })
