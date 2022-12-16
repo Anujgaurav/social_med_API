@@ -1,6 +1,6 @@
 var ex=require("express");
 var app=ex()
-const port = process.env.PORT || 7000;
+
 const bodyParser =require("body-parser")
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -8,6 +8,7 @@ const cors=require("cors");
 app.use(cors());
 const path =require('path')
 const multer = require("multer");
+
 
 const storage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -25,24 +26,23 @@ app.use('/profilePic',ex.static('profilePic'))
 
 
 
-//  mongoose=require("mongoose");
+ mongoose=require("mongoose");
 
-// mongoose.connect("mongodb://localhost:27017/project",
-//     function(){
-//         console.log("mongodb id connected");
-//     }
-// );
+mongoose.connect("mongodb://localhost:27017/project",
+    function(){
+        console.log("mongodb id connected");
+    }
+  
+);
 
-const  ServerApiVersion = require('mongodb');
-
-
-mongoose.connect("mongodb+srv://amanyddv:<password>@cluster0.3bawqzz.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
-    .then( () => {
-        console.log('Connected to the database ')
-    })
-    .catch( (err) => {
-        console.error(`Error connecting to the database. n${err}`);
-    })
+// const  ServerApiVersion = require('mongodb');
+// mongoose.connect("mongodb+srv://amanyddv:<password>@cluster0.3bawqzz.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+//     .then( () => {
+//         console.log('Connected to the database ')
+//     })
+//     .catch( (err) => {
+//         console.error(`Error connecting to the database. n${err}`);
+//     })
 
 
 profileSchema=mongoose.Schema({name:{type:String},email:{type:String},password:{type:String},profile:{type:String}});
@@ -72,29 +72,23 @@ app.post("/addData", function (req,res) {
     
 });
 
+
 app.post("/showData",function(req,res){
-    error="error"
-    profile.findOne({email:req.body.email , password:req.body.password},function(err,k){
-        if(err){
-            console.log(err)
-        }
-        else{
-            res.json(k)
-        }
+   
+    profile.findOne({email:req.body.email},function(err,k){
+       console.log(k)
+       res.json(k)
     });
     
 });
 
 app.post("/feed",function(req,res){
     console.log(req.body.email)
-    error="error"
-    posts.find({email:req.body.email , password:req.body.password},function(err,feed){
-        if(err){
-            console.log(err)
-        }
-        else{
+   
+    posts.find({email:req.body.email},function(err,feed){
+           
             res.json(feed)
-        }
+        
     });
 });
 
@@ -164,5 +158,5 @@ app.post("/changepic",function(req,res){
         
     })
 })
-app.listen(port,function(){
+app.listen(7000,function(){
     console.log("server is running");});
