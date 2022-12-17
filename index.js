@@ -35,20 +35,15 @@ mongoose.connect("mongodb://localhost:27017/project",
   
 );
 
-// const  ServerApiVersion = require('mongodb');
-// mongoose.connect("mongodb+srv://amanyddv:<password>@cluster0.3bawqzz.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
-//     .then( () => {
-//         console.log('Connected to the database ')
-//     })
-//     .catch( (err) => {
-//         console.error(`Error connecting to the database. n${err}`);
-//     })
+
 
 
 profileSchema=mongoose.Schema({name:{type:String},email:{type:String},password:{type:String},profile:{type:String}});
-var profile=mongoose.model("pros",profileSchema);
+var profile=mongoose.model("profile",profileSchema);
+
 profileSchema2=mongoose.Schema({email:{type:String},post:{type:String},comment:{type:String}});
 var posts=mongoose.model("posts",profileSchema2);
+
 msg=mongoose.Schema({email:{type:String},msg:{type:String}})
 var msg=mongoose.model("msg",msg);
 
