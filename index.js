@@ -37,7 +37,6 @@ mongoose.connect("mongodb://localhost:27017/project",
 
 
 
-
 profileSchema=mongoose.Schema({name:{type:String},email:{type:String},password:{type:String},profile:{type:String}});
 var profile=mongoose.model("profile",profileSchema);
 
