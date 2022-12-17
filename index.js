@@ -35,10 +35,14 @@ mongoose.connect("mongodb://localhost:27017/project",
   
 );
 
+
+
 profileSchema=mongoose.Schema({name:{type:String},email:{type:String},password:{type:String},profile:{type:String}});
-var profile=mongoose.model("pros",profileSchema);
+var profile=mongoose.model("profile",profileSchema);
+
 profileSchema2=mongoose.Schema({email:{type:String},post:{type:String},comment:{type:String}});
 var posts=mongoose.model("posts",profileSchema2);
+
 msg=mongoose.Schema({email:{type:String},msg:{type:String}})
 var msg=mongoose.model("msg",msg);
 
