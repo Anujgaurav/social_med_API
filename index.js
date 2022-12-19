@@ -53,6 +53,8 @@ app.post("/addData", function (req,res) {
             console.log(err);
         }
         else{
+            console.log(req.file)
+
         }
         const k = new profile({
             name:req.body.name,
@@ -69,9 +71,13 @@ app.post("/addData", function (req,res) {
 
 app.post("/showData",function(req,res){
    
-    profile.findOne({email:req.body.email},function(err,k){
-       console.log(k)
+    profile.findOne({email:req.body.email,password:req.body.password},function(err,k){
+       if(err){
+        res.json(err)
+       }
+       else{
        res.json(k)
+       }
     });
     
 });
@@ -103,7 +109,7 @@ app.post("/addPost",function(req,res){
         
         let k = new posts(d);
         res.json(k)
-        k.save().then(console.log("justtets"));
+        k.save()
     })
 });
 
@@ -148,9 +154,19 @@ app.post("/changepic",function(req,res){
         else{
         console.log(req.file)
         }
-        res.json(req.file.filename)
+        console.log(req.file.filename)
+        var myquery = {email:req.body.email} ;
+        var newvalues = { $set: {profile:req.file.filename} };
+        profile.updateOne(myquery,newvalues, function(err, res) {
+            if (err) throw err;
+            console.log("1 document updated");
+          });
         
-    })
+          res.json(req.file.filename)
+
+        })
+        
+ 
 })
 app.listen(7000,function(){
     console.log("server is running");});
